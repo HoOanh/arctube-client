@@ -1,0 +1,54 @@
+.result {
+  background-color: var(--bg);
+  padding: 20px;
+  max-width: 1096px;
+  margin: 0 auto;
+
+  &__filter {
+    display: flex;
+    align-items: center;
+    color: var(--textSoft);
+    font-size: xx-small !important;
+
+    h2 {
+      margin-left: 10px;
+    }
+  }
+
+  hr {
+    height: 1px;
+    border: 0;
+    background-color: var(--soft);
+    margin: 10px 0;
+  }
+
+  &__videos {
+    .videoCard {
+      width: 80%;
+      display: flex;
+      justify-content: flex-start;
+
+      &__thumbnail {
+        width: 30%;
+      }
+
+      &__info {
+        margin: 0;
+        &-avatar {
+          display: none;
+        }
+
+        &-text {
+          margin-left: 0;
+
+          h4 {
+            font-size: 22px;
+            font-weight: 400;
+            max-height: 6rem;
+            line-height: 2.5rem;
+          }
+        }
+      }
+    }
+  }
+}

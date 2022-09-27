@@ -1,0 +1,151 @@
+.watch {
+  display: flex;
+  gap: 24px;
+  max-width: 1500px;
+
+  padding: 20px 50px;
+
+  &__content {
+    flex: 5;
+  }
+
+  &__recommendation {
+    flex: 2;
+
+    .videoCard {
+      display: flex;
+      width: 100%;
+      padding-bottom: 15px;
+
+      &__thumbnail {
+        height: 94px;
+        width: 168px;
+      }
+
+      &__info {
+        margin: 0;
+
+        &-avatar {
+          display: none;
+        }
+
+        &-text {
+          display: flex;
+          flex-direction: column;
+
+          margin-left: 0;
+
+          h4 {
+            font-size: 14px;
+            font-weight: 500;
+            max-height: 6rem;
+          }
+
+          p {
+            font-size: 11px;
+          }
+        }
+      }
+    }
+  }
+
+  &__videoWrapper {
+    width: 100%;
+    min-height: 320px;
+    object-fit: cover;
+
+    video {
+      width: 100%;
+    }
+  }
+
+  &__details {
+    margin-top: 10px;
+
+    &-title {
+      font-size: 24px;
+      font-weight: 500;
+
+      color: var(--text);
+    }
+
+    &-info {
+      width: 80%;
+      margin-bottom: 10px;
+
+      white-space: pre-line;
+      span {
+        font-size: 14px;
+        color: var(--textSoft);
+      }
+    }
+  }
+
+  &__controls {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    cursor: pointer;
+
+    &-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      font-size: 20px;
+      font-weight: 400;
+
+      margin-bottom: 10px;
+      color: var(--text);
+
+      svg {
+        font-size: 20px !important;
+        color: var(--text);
+      }
+    }
+  }
+
+  &__chanel {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    margin-top: 10px;
+
+    &-avatar {
+      width: 50px !important;
+      height: 50px !important;
+    }
+
+    &-text {
+      flex: 2;
+      padding-right: 20px;
+
+      h4 {
+        font-size: 18px;
+        color: var(--text);
+        margin-bottom: 5px;
+      }
+
+      p {
+        font-size: 14px;
+        color: var(--textSoft);
+      }
+    }
+
+    &-btn {
+      height: max-content;
+      padding: 10px 20px;
+
+      font-weight: 500;
+      text-transform: uppercase;
+
+      background: #cc1a00;
+      color: white;
+
+      border: none;
+      border-radius: 2px;
+      cursor: pointer;
+    }
+  }
+}

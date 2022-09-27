@@ -1,0 +1,39 @@
+.sidebar {
+  flex: 0.15;
+  padding-right: 10px;
+
+  position: sticky;
+  top: 72px;
+  height: calc(100vh - 72px);
+  overflow-y: scroll;
+
+  hr {
+    height: 1px;
+    border: 0;
+    background-color: var(--soft);
+    margin: 10px 0;
+  }
+}
+
+.login-btn {
+  padding: 10px 20px;
+  font-size: 14px;
+
+  button {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-top: 10px;
+    padding: 5px 15px;
+
+    border-radius: 3px;
+    border: 1px solid #3ea6ff;
+
+    background: transparent;
+    color: #3ea6ff;
+
+    text-transform: uppercase;
+    font-weight: 500;
+    cursor: pointer;
+  }
+}
