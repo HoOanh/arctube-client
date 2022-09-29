@@ -7,12 +7,14 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import commentApi from '../../api/commentApi';
 import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 const CommentList = ({ videoId }) => {
   const [comments, setComments] = useState([]);
   const [cmtInput, setCmtInput] = useState('');
 
   const { currentUser } = useSelector((state) => state.user);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const getComment = async () => {
@@ -29,15 +31,19 @@ const CommentList = ({ videoId }) => {
     e.preventDefault();
 
     try {
-      await commentApi.addComment({
-        desc: cmtInput,
-        videoId: videoId,
-      });
+      if (currentUser) {
+        await commentApi.addComment({
+          desc: cmtInput,
+          videoId: videoId,
+        });
 
-      const updateCmt = await commentApi.getComment(videoId);
-      setComments(updateCmt.reverse());
+        const updateCmt = await commentApi.getComment(videoId);
+        setComments(updateCmt.reverse());
 
-      e.target.reset();
+        e.target.reset();
+      } else {
+        navigate('/sign-in');
+      }
     } catch (err) {}
   };
 
@@ -45,7 +51,7 @@ const CommentList = ({ videoId }) => {
     <div className="comments">
       <p>{comments?.length} comment</p>
       <div className="comments__add">
-        <Avatar src={currentUser.img} />
+        <Avatar src={currentUser?.img} />
         <form onSubmit={(e) => handleAddComment(e)}>
           <input
             onChange={(e) => setCmtInput(e.target.value)}

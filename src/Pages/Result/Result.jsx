@@ -7,6 +7,7 @@ import ChanelRow from '../../Components/ChanelRow/ChanelRow';
 import { useLocation } from 'react-router-dom';
 import videoApi from '../../api/videoApi';
 import userApi from '../../api/userApi';
+import Loading from '../../Components/Layout/Loading/Loading';
 
 const Result = () => {
   const search = useLocation().search;
@@ -14,6 +15,7 @@ const Result = () => {
 
   const [videos, setVideos] = useState([]);
   const [users, setUsers] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const getData = async () => {
@@ -22,35 +24,42 @@ const Result = () => {
         const usersResult = await userApi.search(q);
         setVideos(videoResult);
         setUsers(usersResult);
+        setLoading(false);
       } catch (err) {}
     };
     getData();
   }, [q]);
 
   return (
-    <div className="result">
-      <div className="result__filter">
-        <TuneIcon />
-        <h2>FILTER</h2>
-      </div>
-      <hr />
+    <>
+      {loading ? (
+        <Loading />
+      ) : (
+        <div className="result">
+          <div className="result__filter">
+            <TuneIcon />
+            <h2>FILTER</h2>
+          </div>
+          <hr />
 
-      {users && (
-        <div className="result__chanel">
-          {users.map((u) => (
-            <ChanelRow props={u} key={u._id} />
-          ))}
+          {users && (
+            <div className="result__chanel">
+              {users.map((u) => (
+                <ChanelRow props={u} key={u._id} />
+              ))}
+            </div>
+          )}
+
+          {videos && (
+            <div className="result__videos">
+              {videos.map((v) => (
+                <VideoCard props={v} key={v._id} />
+              ))}
+            </div>
+          )}
         </div>
       )}
-
-      {videos && (
-        <div className="result__videos">
-          {videos.map((v) => (
-            <VideoCard props={v} key={v._id} />
-          ))}
-        </div>
-      )}
-    </div>
+    </>
   );
 };
 
