@@ -1,26 +1,25 @@
 import React, { useEffect, useState } from 'react';
 import videoApi from '../../api/videoApi';
 import VideoCard from '../VideoCard/VideoCard';
-import './Recommendation.scss';
 
-const Recommendation = ({ tags }) => {
+const Recommendation = ({ props }) => {
   const [videos, setVideos] = useState([]);
 
   useEffect(() => {
     const getVideo = async () => {
       try {
-        const res = await videoApi.getVideoByTags(tags.toString());
+        const res = await videoApi.getVideoByTags(props.tags.toString());
         setVideos(res);
       } catch (err) {}
     };
     getVideo();
-  }, [tags]);
+  }, [props.tags]);
 
   return (
     <div className="recommendation">
-      {videos.map((v) => (
-        <VideoCard key={v._id} props={v} />
-      ))}
+      {videos.map(
+        (v) => v._id != props.videoId && <VideoCard key={v._id} props={v} />
+      )}
     </div>
   );
 };

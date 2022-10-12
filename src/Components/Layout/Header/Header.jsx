@@ -13,7 +13,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Upload from '../../Upload/Upload';
 import { logout } from '../../../redux/userSlice';
 
-const Header = () => {
+const Header = ({ login }) => {
   let navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -84,18 +84,18 @@ const Header = () => {
               </div>
             </>
           ) : (
-            <Link
-              to="/sign-in"
-              style={{ textDecoration: 'none', color: 'inherit' }}
-            >
-              <div className="login-btn" style={{ padding: '0' }}>
-                <button>
-                  {' '}
-                  <AccountCircleOutlinedIcon sx={{ fontSize: 20 }} />
-                  Sign in
-                </button>
-              </div>
-            </Link>
+            // <Link
+            //   to="/sign-in"
+            //   style={{ textDecoration: 'none', color: 'inherit' }}
+            // >
+            <div className="login-btn" style={{ padding: '0' }}>
+              <button onClick={login}>
+                {' '}
+                <AccountCircleOutlinedIcon sx={{ fontSize: 20 }} />
+                Sign in
+              </button>
+            </div>
+            // </Link>
           )}
         </div>
       </div>

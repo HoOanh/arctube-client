@@ -37,7 +37,7 @@ const ChanelRow = ({ props }) => {
 
       <button className="watch__chanel-btn" onClick={handleSubscription}>
         {currentUser.subscribedUser?.includes(props._id)
-          ? 'subscribed'
+          ? 'unsubscribe'
           : 'subscribe'}
       </button>
     </div>

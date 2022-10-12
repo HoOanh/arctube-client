@@ -25,7 +25,9 @@ const VideoCard = ({ props }) => {
       style={{ textDecoration: 'none', color: 'var(--text)' }}
       className="videoCard"
     >
-      <img className="videoCard__thumbnail" src={props.imgUrl} alt="" />
+      <div className="videoCard__thumbnail">
+        <img src={props.imgUrl} alt="" />
+      </div>
       <div className="videoCard__info">
         <Avatar className="videoCard__info-avatar" src={chanel.img} />
         <div className="videoCard__info-text">

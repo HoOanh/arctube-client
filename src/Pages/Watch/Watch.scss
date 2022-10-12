@@ -3,7 +3,7 @@
   gap: 24px;
   max-width: 1500px;
 
-  padding: 20px 50px;
+  padding: 20px 10px;
 
   &__content {
     flex: 5;
@@ -15,14 +15,21 @@
     .videoCard {
       display: flex;
       width: 100%;
-      padding-bottom: 15px;
+      margin-bottom: 0;
+
+      &:hover {
+        background: var(--soft);
+        transform: perspective(800px) translateZ(25px);
+        transition-delay: 0ms;
+      }
 
       &__thumbnail {
-        height: 94px;
-        width: 168px;
+        height: 78px;
+        width: 40%;
       }
 
       &__info {
+        width: 60%;
         margin: 0;
 
         &-avatar {

@@ -13,7 +13,7 @@ import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 import { Avatar } from '@mui/material';
 import CommentList from '../../Components/CommentList/CommentList';
 
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import videoApi from '../../api/videoApi';
@@ -36,6 +36,7 @@ const Watch = () => {
   const videoId = new URLSearchParams(search).get('w');
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const { currentUser } = useSelector((state) => state.user);
   const { currentVideo } = useSelector((state) => state.video);
@@ -46,6 +47,7 @@ const Watch = () => {
 
   useEffect(() => {
     const getData = async () => {
+      setLoading(true);
       dispatch(fetchStart());
       try {
         const video = await videoApi.getVideoById(videoId);
@@ -56,25 +58,26 @@ const Watch = () => {
         setLoading(false);
       } catch (error) {
         dispatch(fetchFailure());
+        setLoading(false);
       }
     };
     getData();
   }, [videoId]);
 
   const handleLike = async () => {
-    if (!currentUser) return;
+    if (!currentUser) navigate('/sign-in');
     await userApi.like(currentVideo._id);
     dispatch(like(currentUser._id));
   };
 
   const handleDisLike = async () => {
-    if (!currentUser) return;
+    if (!currentUser) navigate('/sign-in');
     await userApi.disLike(currentVideo._id);
     dispatch(disLike(currentUser._id));
   };
 
   const handleSubscription = async () => {
-    if (!currentUser) return;
+    if (!currentUser) navigate('/sign-in');
     currentUser.subscribedUser.includes(chanel._id)
       ? await userApi.unSub(chanel._id)
       : await userApi.sub(chanel._id);
@@ -168,7 +171,11 @@ const Watch = () => {
           </div>
 
           <div className="watch__recommendation">
-            {<Recommendation tags={currentVideo.tags} />}
+            {
+              <Recommendation
+                props={{ tags: currentVideo.tags, videoId: videoId }}
+              />
+            }
           </div>
         </div>
       )}

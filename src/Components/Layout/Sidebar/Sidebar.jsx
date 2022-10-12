@@ -20,7 +20,7 @@ import {
   setLightTheme,
 } from '../../../redux/themeSlice';
 
-const Sidebar = () => {
+const Sidebar = ({ login }) => {
   const dispatch = useDispatch();
 
   const { theme } = useSelector((state) => state.theme);
@@ -53,19 +53,19 @@ const Sidebar = () => {
       {!currentUser && (
         <>
           <hr />
-          <Link
+          {/* <Link
             to="/sign-in"
             style={{ textDecoration: 'none', color: 'inherit' }}
-          >
-            <div className="login-btn">
-              <p>Sign in to like video, comment and subscribe.</p>
-              <button>
-                {' '}
-                <AccountCircleOutlinedIcon sx={{ fontSize: 20 }} />
-                Sign in
-              </button>
-            </div>
-          </Link>
+          > */}
+          <div className="login-btn">
+            <p>Sign in to like video, comment and subscribe.</p>
+            <button onClick={login}>
+              {' '}
+              <AccountCircleOutlinedIcon sx={{ fontSize: 20 }} />
+              Sign in
+            </button>
+          </div>
+          {/* </Link> */}
         </>
       )}
 

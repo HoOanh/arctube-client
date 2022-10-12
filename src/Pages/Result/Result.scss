@@ -29,10 +29,11 @@
       justify-content: flex-start;
 
       &__thumbnail {
-        width: 30%;
+        width: 35%;
       }
 
       &__info {
+        width: 65%;
         margin: 0;
         &-avatar {
           display: none;
